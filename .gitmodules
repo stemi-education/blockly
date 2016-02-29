@@ -1,0 +1,3 @@
+[submodule "hexapod-js"]
+	path = hexapod-js
+	url = https://github.com/stemi-education/hexapod-js.git
