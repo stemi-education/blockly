@@ -2,7 +2,7 @@
 
 Control your STEMI hexapod via Blockly graphical programming language !
 
-**Go to [STEMI hexapod Blockly app](http://stemi-education.github.io/blockly/).**
+**Go to [STEMI hexapod Blockly app](http://stemi-education.github.io/blockly/stemi).**
 
 ## Blockly
 
