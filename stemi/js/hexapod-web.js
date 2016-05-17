@@ -25,9 +25,9 @@ var Hexapod = function(ip, port){
 /**
  * STEMI hexapod robot expects to receive binary messages we called 'Packets'.
  * Since these messages contain a lot of parameters, object 'Packet' is introduced
- * for simplicity. Unchanged, it contains all the values necesarry for the robot
+ * for simplicity. Unchanged, it contains all the values necessary for the robot
  * to stay still. By changing the parameters of Packet we can issue movement
- * commands for the hexapod. This is the short expanation of the parameters
+ * commands for the hexapod. This is the short explanation of the parameters
  * and their valid values:
  *
  *  Translational motion:
@@ -39,19 +39,19 @@ var Hexapod = function(ip, port){
  *   rotation - [-100..100]; speed and direction of rotation;
  *              [0..100] - clockwise; [-100..0] counterclockwise
  *
- *  Special flags (Tilt bytes are MUTUALY EXCUSIVE):
+ *  Special flags (Tilt bytes are MUTUALLY EXCLUSIVE):
  *   staticTilt - [0,1] 1 -> enable body tilting according to the accelerometer
  *   movingTilt - [0,1] 1 -> enable body tilting while walking *EXPERIMENTAL*
- *   onOff      - [0,1] 1 -> robot operational; 0 -> robot sleeping *NOT IMPLEMENTED*
+ *   onOff      - [0,1] 1 -> robot operational; 0 -> robot sleeping
  *
  *  Accelerometer (one of the *Tilt bytes must be 1):
- *   Bytes should containe acceleration force in (m/s^2 * 10), saturated at -40 and 40
+ *   Bytes should contain acceleration force in (m/s^2 * 10), saturated at -40 and 40
  *    accX - x axis acceleration
  *    accY - y axis acceleration
  *
  *  Sliders array:
- *   Array of 9 bytes that represent the state of 9 sliers of the Android app.
- *   Has a defualt value of [50, 25, 0, 0, 0, 0, 0, 0, 0]
+ *   Array of 9 bytes that represent the state of 9 sliders of the Android app.
+ *   Has a default value of [50, 25, 0, 0, 0, 0, 0, 0, 0]
  *    slidersArray[0]    - [0..100] robot height
  *    slidersArray[1]    - [0..100] gait
  *    slidersArray[2..8] - [0..255] user defined data; this is where users can
@@ -59,14 +59,14 @@ var Hexapod = function(ip, port){
  *                         firmware needs to be modified in order to utilize
  *                         these bytes.
  *
- *  [EXPERIMENTAL] duration - [0..65535] specifies how long will a packet be
- *                            "executed" on a robot. If 0, the robot will go in
- *                            rest state as soon as the timer on robot expires.
- *                            Value represents number of cycles, which is 20ms
- *                            for STEMI hexapod. E.g. to command the robot to go
- *                            forward for 1 second with the maximum speed, the
- *                            packet would be crated as:
- *                              var packet = new Packet({power: 100, duration: 50});
+ *  duration - [0..65535] specifies how long will a packet be
+ *             "executed" on a robot. If 0, the robot will go in
+ *             rest state as soon as the timer on robot expires.
+ *             Value represents number of cycles, which is 20ms
+ *             for STEMI hexapod. E.g. to command the robot to go
+ *             forward for 1 second with the maximum speed, the
+ *             packet would be crated as:
+ *               var packet = new Packet({power: 100, duration: 50});
  *
  */
  var Packet = function(parameters){
@@ -76,7 +76,7 @@ var Hexapod = function(ip, port){
      rotation: 0,
      staticTilt: 0,
      movingTilt: 0,
-     onOff: 0,
+     onOff: 1,
      accX: 0,
      accY: 0,
      slidersArray: [50, 25, 0, 0, 0, 0, 0, 0, 0],
